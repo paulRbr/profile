@@ -9,6 +9,7 @@
   l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
   ll = log --stat --abbrev-commit
   d = diff --color-words
+  hist = log --pretty=format:\"%C(yellow)%h%Creset %C(green)%ad%Creset | %s %C(blue)%d%Creset %C(red)[%an]%Creset\" --graph --date=short --color
 [web]
   browser = open
 [gui]
