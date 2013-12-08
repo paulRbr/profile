@@ -1,7 +1,7 @@
 My Bash Profile
 ===============
 
-This is the profile that I'm now using across a number of machines that I administer.  Most of the tricks I use are fairly general and could be reused by anyone.
+This is the profile that I user daily. A big thanks to [Mat Schaffer](https://github.com/matschaffer) to make his profile public.
 
 What's it look like?
 --------------------
@@ -16,6 +16,8 @@ Installation
 From here you can now put any `*.conf` in `~/.profile.d` and it'll get loaded in alphabetical order. You can also make directories that end in `.conf` which profile will then load all the `.conf` files in that directory in order.
 
 Additionally, if you need to have OS-specific configuration just put a folder in `.profile.d` or `.profile.d/core` with the name returned by `uname`, for example `.profile.d/Darwin`. The profile checks `uname` when bash starts and loads any `.conf` files or directories in this OS-specific folder.
+
+__Note:__ Set your fav editor in `~/.profile.d/editors.conf`
 
 Load order
 ----------
@@ -40,13 +42,6 @@ This list is not guaranteed to be comprehensive, but here are some of the major 
 * Integration with [CDArgs](http://www.skamphausen.de/cgi-bin/ska/CDargs)
 * Integration with [Autojump](http://github.com/joelthelion/autojump/)
 * Integration with [RVM](http://rvm.beginrescueend.com/)
-
-Planned features
-----------------
-
-* 'link_dotfiles' command that will create symlinks for all the files listed in the dotfiles directory
-* Tab completion for ssh hosts in Solaris/Ubuntu
-* Single-command for SSH key distribution and profile distribution
 
 Contributing
 ------------
