@@ -1,12 +1,12 @@
 My Bash Profile
 ===============
 
-This is the profile that I user daily. A big thanks to [Mat Schaffer](https://github.com/matschaffer) to make his profile public.
+This is the profile that I use daily. A big thanks to [Mat Schaffer](https://github.com/matschaffer) to make his profile public.
 
 What's it look like?
 --------------------
 
-![Feature Diagram](http://img.skitch.com/20100928-ng3tdm6b54wn4g62x2syaaef5w.jpg)
+![Feature Diagram](http://farm4.staticflickr.com/3730/11277216155_9518a903fb_z.jpg)
 
 Installation
 ------------
