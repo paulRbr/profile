@@ -38,3 +38,8 @@ if ! is_home_dir "${PROFILE_CUSTOM}"; then
 fi
 
 cd "${ORIGINAL_PWD}"
+_byobu_sourced=1 . /usr/bin/byobu-launch
+
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+#. ~/.spm_completion

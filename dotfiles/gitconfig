@@ -10,6 +10,10 @@
   ll = log --stat --abbrev-commit
   d = diff --color-words
   hist = log --pretty=format:\"%C(yellow)%h%Creset %C(green)%ad%Creset | %s %C(blue)%d%Creset %C(red)[%an]%Creset\" --graph --date=short --color
+  fixup = ci -a --fixup HEAD
+  autosquash = rebase -i HEAD~2 --autosquash
+[push]
+  default = matching
 [web]
   browser = open
 [gui]
