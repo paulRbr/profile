@@ -1,3 +1,6 @@
+# Load byobu before all
+[ -f /usr/bin/byobu-launch ] && _byobu_sourced=1 . /usr/bin/byobu-launch
+
 load_conf() {
   local conf
   for conf in "$1"/*.conf; do
@@ -38,8 +41,5 @@ if ! is_home_dir "${PROFILE_CUSTOM}"; then
 fi
 
 cd "${ORIGINAL_PWD}"
-_byobu_sourced=1 . /usr/bin/byobu-launch
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 #. ~/.spm_completion
