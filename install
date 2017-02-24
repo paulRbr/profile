@@ -28,15 +28,9 @@ for BLOCKING_RC in .bashrc .login .bashprofile; do
   fi
 done
 
-for DOTFILE in $PROFILE_PATH/core/dotfiles/*; do
-  existing=".$(basename $DOTFILE)"
-  if [ -f $existing ]; then
-    echo
-    echo "Warning: Found existing $existing dotfile."
-    echo "You may want to check it and merge it with the $PROFILE_PATH/core/dotfiles/$existing file."
-  else
-    cp $DOTFILE $existing
-  fi
-done
+. .profile
+PROFILE_PATH="$PROFILE_PATH/core"
+link_dotfiles
 
+echo "Installation of Profile done!"
 echo
