@@ -12,10 +12,13 @@
   d = diff --color-words
   hist = log --pretty=format:\"%C(yellow)%h%Creset %C(green)%ad%Creset | %s %C(blue)%d%Creset %C(red)[%an]%Creset\" --graph --date=short --color
   review = rebase -i HEAD@{u} --autosquash
+  track = "!f() { : git branch ; git branch --set-upstream-to=${1:-upstream}/${2:-dev} ; }; f"
 [push]
   default = simple
 [pull]
   rebase = true
+[fetch]
+  prune = true
 [web]
   browser = open
 [gui]
@@ -37,3 +40,10 @@
   added = green
   changed = red
   untracked = cyan
+[diff "csv"]
+  wordRegex = .
+[core]
+  excludesfile = /home/paul/.gitignore
+[user]
+  name = Paul B.
+  signingkey = 748D3A27
