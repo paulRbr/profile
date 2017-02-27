@@ -12,7 +12,9 @@
   d = diff --color-words
   hist = log --pretty=format:\"%C(yellow)%h%Creset %C(green)%ad%Creset | %s %C(blue)%d%Creset %C(red)[%an]%Creset\" --graph --date=short --color
   review = rebase -i HEAD@{u} --autosquash
+  feat = "!f() { git co -b ${1:-my-new-feature} --track ${3:-upstream}/${3:-dev} ; }; f"
   track = "!f() { : git branch ; git branch --set-upstream-to=${1:-upstream}/${2:-dev} ; }; f"
+  done  = "!f() { local name=$(git symbolic-ref --short HEAD) ; git co - ; git branch -D $name ; git push origin :$name ; }; f"
 [push]
   default = simple
 [pull]
