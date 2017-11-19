@@ -15,6 +15,9 @@
   feat = "!f() { git co -b ${1:-my-new-feature} --track ${2:-upstream}/${3:-dev} ; }; f"
   track = "!f() { : git branch ; git branch --set-upstream-to=${1:-upstream}/${2:-dev} ; }; f"
   done  = "!f() { local name=$(git symbolic-ref --short HEAD) ; git co - ; git branch -D $name ; git push origin :$name ; git pull ; }; f"
+  tracked = "!f() { local a=\"$(git branch -vv | grep \"$(git rev-parse --abbrev-ref HEAD)\")\" ; a=${a#*[} ; a=${a%%]*} ; echo ${a%%:*} ; }; f"
+  octo = merge --commit --no-ff
+  merged = "!f() { git hist ${1:-dev}...${2:-master} | grep -no \"Merge branch '[^']*'\"  | awk '{print $3}' ; }; f"
 [push]
   default = simple
 [pull]
@@ -48,4 +51,5 @@
   excludesfile = /home/paul/.gitignore
 [user]
   name = Paul B.
-  signingkey = 748D3A27
+[commit]
+  gpgsign = true
