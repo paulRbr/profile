@@ -18,6 +18,7 @@
   tracked = "!f() { local a=\"$(git branch -vv | grep \"$(git rev-parse --abbrev-ref HEAD)\")\" ; a=${a#*[} ; a=${a%%]*} ; echo ${a%%:*} ; }; f"
   octo = merge --commit --no-ff
   merged = "!f() { git hist ${1:-dev}...${2:-master} | grep -no \"Merge branch '[^']*'\"  | awk '{print $3}' ; }; f"
+  clean-branches = "!f() { for branch in $(git branch | sed 's/*//'); do echo \"Checking branch $branch\"; git co $branch; git track ${1:-upstream} ${2:-dev}; git pull ${1:-upstream}; if [ -n \"$(git diff ${1:-upstream}/${2:-dev})\" ]; then echo \"##=> $branch is not empty\"; else git done; fi; done }"
 [push]
   default = simple
 [pull]
@@ -51,5 +52,10 @@
   excludesfile = /home/paul/.gitignore
 [user]
   name = Paul B.
+  email = paul.bonaud@capitainetrain.com
+  signingkey = DE331B23748D3A27
+  # email = paul@bonaud.fr
+  # signingkey = 9FB49A6918860ED6
 [commit]
   gpgsign = true
+  verbose = true
