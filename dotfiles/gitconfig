@@ -52,10 +52,8 @@
   excludesfile = /home/paul/.gitignore
 [user]
   name = Paul B.
-  email = paul.bonaud@capitainetrain.com
+  email = paul@bonaud.fr
   signingkey = DE331B23748D3A27
-  # email = paul@bonaud.fr
-  # signingkey = 9FB49A6918860ED6
 [commit]
   gpgsign = true
   verbose = true
