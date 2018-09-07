@@ -57,3 +57,5 @@
 [commit]
   gpgsign = true
   verbose = true
+[github]
+	user = paulrbr
