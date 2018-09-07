@@ -28,9 +28,9 @@ for BLOCKING_RC in .bashrc .login .bashprofile; do
 done
 
 ln -s $PROFILE_PATH/.bashrc.conf .bashrc
-echo ". .profile" >> .bashrc
+echo ". ~/.profile" >> .bashrc
 
-. .profile
+. ~/.profile
 PROFILE_PATH="$PROFILE_PATH/core"
 link_dotfiles
 
