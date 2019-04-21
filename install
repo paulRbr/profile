@@ -10,7 +10,7 @@ cd "$HOME"
 mkdir $PROFILE_PATH
 git clone $PROFILE_REPO $PROFILE_PATH/core
 
-if [ -f .profile && ! -L .profile]; then
+if [[ -f .profile && ! -L .profile ]]; then
   echo
   echo "Moving current .profile to $PROFILE_PATH/userprofile.conf"
   mv .profile $PROFILE_PATH/userprofile.conf
@@ -19,7 +19,7 @@ fi
 ln -s $PROFILE_PATH/core/init .profile
 
 for BLOCKING_RC in .bashrc .login .bashprofile; do
-  if [ -f $BLOCKING_RC && ! -L $BLOCKING_RC ]; then
+  if [[ -f $BLOCKING_RC && ! -L $BLOCKING_RC ]]; then
     echo
     echo "Warning: Found existing $BLOCKING_RC which may cause .profile not to load."
     echo "Moving this file into a $PROFILE_PATH/$BLOCKING_RC.conf file."
