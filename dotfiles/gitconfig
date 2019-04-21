@@ -10,15 +10,15 @@
   l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
   ll = log --stat --abbrev-commit
   d = diff --color-words
-  hist = log --pretty=format:\"%C(yellow)%h%Creset %C(green)%ad%Creset | %s %C(blue)%d%Creset %C(red)[%an]%Creset\" --graph --date=short --color
+  hist = "log --pretty=format:\"%C(yellow)%h%Creset %C(green)%ad%Creset | %s %C(blue)%d%Creset %C(red)[%an]%Creset\" --graph --date=short --color"
   review = "!f() { git rebase -i HEAD@{u} --autosquash && git pull ; }; f"
-  feat = "!f() { git co -b ${1:-my-new-feature} --track ${2:-upstream}/${3:-dev} ; }; f"
-  track = "!f() { : git branch ; git branch --set-upstream-to=${1:-upstream}/${2:-dev} ; }; f"
+  feat = "!f() { git co -b ${1:-my-new-feature} --track ${2:-upstream}/${3:-development} ; }; f"
+  track = "!f() { : git branch ; git branch --set-upstream-to=${1:-upstream}/${2:-development} ; }; f"
   done  = "!f() { local name=$(git symbolic-ref --short HEAD) ; git co - ; git branch -D $name ; git push origin :$name ; git pull ; }; f"
   tracked = "!f() { local a=\"$(git branch -vv | grep \"$(git rev-parse --abbrev-ref HEAD)\")\" ; a=${a#*[} ; a=${a%%]*} ; echo ${a%%:*} ; }; f"
   octo = merge --commit --no-ff
-  merged = "!f() { git hist ${1:-dev}...${2:-master} | grep -no \"Merge branch '[^']*'\"  | awk '{print $3}' ; }; f"
-  clean-branches = "!f() { for branch in $(git branch | sed 's/*//'); do echo \"Checking branch $branch\"; git co $branch; git track ${1:-upstream} ${2:-dev}; git pull ${1:-upstream}; if [ -n \"$(git diff ${1:-upstream}/${2:-dev})\" ]; then echo \"##=> $branch is not empty\"; else git done; fi; done }"
+  merged = "!f() { git hist ${1:-development}...${2:-master} | grep -no \"Merge branch '[^']*'\"  | awk '{print $3}' ; }; f"
+  clean-branches = "!f() { for branch in $(git branch | sed 's/*//'); do echo \"Checking branch $branch\"; git co $branch; git track ${1:-upstream} ${2:-development}; git pull ${1:-upstream}; if [ -n \"$(git diff ${1:-upstream}/${2:-development})\" ]; then echo \"##=> $branch is not empty\"; else git done; fi; done }"
 [push]
   default = simple
 [pull]
@@ -28,7 +28,7 @@
 [web]
   browser = open
 [gui]
-  fontdiff = -family Monaco -size 13 -weight normal -slant roman -underline 0 -overstrike 0
+  fontdiff = "-family Monaco -size 13 -weight normal -slant roman -underline 0 -overstrike 0"
 [color]
   branch = auto
   diff = auto
@@ -50,6 +50,8 @@
   wordRegex = .
 [core]
   excludesfile = /home/paul/.gitignore
+[credential]
+  helper = "netrc -f ~/.netrc.gpg -v"
 [user]
   name = Paul B.
   email = paul@bonaud.fr
@@ -57,5 +59,21 @@
 [commit]
   gpgsign = true
   verbose = true
+[includeIf "gitdir:~/devel/ct/"]
+  path = ~/devel/ct/.gitconfig
+[includeIf "gitdir:~/devel/fretlink/"]
+  path = ~/devel/fretlink/.gitconfig
+[log]
+	showSignature = false
+[forge]
+        remote = upstream
 [github]
+        user = paulrbr-fl
+[gitlab]
+	user = paulrbr-fl
+[gitlab "framagit.org/api/v4"]
+	user = paulrbr
+[gitlab "gitlab-perso.com/api/v4"]
+	user = paulrbr
+[github "api.github-perso.com"]
 	user = paulrbr
