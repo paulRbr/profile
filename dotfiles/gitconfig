@@ -58,7 +58,8 @@
   signingkey = DE331B23748D3A27
 [commit]
   gpgsign = true
-  verbose = true
+  # No need for verbose commit when using magit
+  # verbose = true
 [includeIf "gitdir:~/devel/ct/"]
   path = ~/devel/ct/.gitconfig
 [includeIf "gitdir:~/devel/fretlink/"]
