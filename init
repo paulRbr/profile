@@ -45,6 +45,9 @@ cd "${ORIGINAL_PWD}"
 #. ~/.spm_completion
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then . ${HOME}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-if [ -e /home/paul/.nix-profile/etc/profile.d/nix.sh ]; then . /home/paul/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+if [ -s "$NVM_DIR/nvm.sh" ]; then
+    . "$NVM_DIR/nvm.sh"  # This loads nvm
+fi
+if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then
+    . ${HOME}/.nix-profile/etc/profile.d/nix.sh
+fi # added by Nix installer
