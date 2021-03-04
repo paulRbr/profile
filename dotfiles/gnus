@@ -13,18 +13,44 @@
 (setq gnus-novice-user nil)
 
 ;; Remove nntp news from emacs
-(setq gnus-select-method '(nnnil ""))
+(setq gnus-select-method '(nnnil nil))
 (setq gnus-nntp-server nil)
 
 ;; Configure identity
-(setq user-mail-address "paul@bonaud.fr"
-      user-full-name "Paul(r) B.")
+;; (setq user-mail-address "paul@bonaud.fr"
+;;       user-full-name "Paul B.")
 
-(setq gnus-select-method
-      '(nnimap "gmail"
-	       (nnimap-address "imap.gmail.com")  ; it could also be imap.googlemail.com if that's your server.
-	       (nnimap-server-port "imaps")
-	       (nnimap-stream ssl)))
+(setq gnus-secondary-select-methods
+      '((nnimap "home"
+                (nnimap-address "imap.gmail.com")
+                (nnimap-server-port "imaps")
+                (nnimap-stream ssl)
+                (nnir-search-engine imap)
+                (nnmail-expiry-target "nnimap+home:[Gmail]/Trash")
+                (nnmail-expiry-wait 'immediate))
+        (nnimap "bump"
+                (nnimap-address "imap.gmail.com")
+                (nnimap-server-port "imaps")
+                (nnimap-stream ssl)
+                (nnir-search-engine imap)
+                (nnmail-expiry-target "nnimap+bump:[Gmail]/Trash")
+                (nnmail-expiry-wait 'immediate))))
+;; (setq gnus-select-method
+;;       '(nnimap "gmail"
+;; 	       (nnimap-address "imap.gmail.com") ; it could also be imap.googlemail.com if that's your server.
+;; 	       (nnimap-server-port "imaps")
+;; 	       (nnimap-stream ssl)))
+
+;; Reply to mails with matching email address
+(setq gnus-posting-styles
+      '((".*" ; Matches all groups of messages
+         (address "Paul Bonaud <paul@bonaud.fr>"))
+        ("bump" ; Matches Gnus group called "bump"
+         (address "Paul Bonaud <paul@bump.sh>")
+         (organization "Bump.sh")
+         (signature-file "~/.signature-work")
+         ("X-Message-SMTP-Method" "smtp smtp.gmail.com 587 paul@bump.sh"))))
+
 
 (setq smtpmail-smtp-server "smtp.gmail.com"
       smtpmail-smtp-service 587
@@ -56,11 +82,11 @@
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ;; Gnus desktop notifications
-;; (setq gnus-notifications-minimum-level 10)
-;; (add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
+(setq gnus-notifications-minimum-level 10)
+(add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 
 ;; Fetch mail every X minutes when idle for Y minutes
-(gnus-demon-add-handler 'gnus-demon-scan-news 3 t)
+(gnus-demon-add-handler 'gnus-demon-scan-news 5 t)
 
 ;; Archive mail in the Sent folder
 (setq gnus-message-archive-group "nnimap:Sent")
@@ -87,8 +113,8 @@
 ;; Verify signed messages
 (setq mm-verify-option 'known
       mm-decrypt-option 'known
-      mm-sign-option 'nil
-      mm-encrypt-option 'nil
+      mm-sign-option nil ;; Auto select key for signing
+      mm-encrypt-option nil
       gnus-article-emulate-mime t)
 
 ;; Make gnus threading more stylish
@@ -114,3 +140,5 @@
 (setq gnus-face-8 'gnus-face-8)
 (setq gnus-face-9 'font-lock-warning-face)
 (setq gnus-face-10 'shadow)
+
+(setq send-mail-function (quote smtpmail-send-it))

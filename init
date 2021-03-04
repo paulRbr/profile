@@ -1,6 +1,3 @@
-# Load byobu before all
-[ -f /usr/bin/byobu-launch ] && _byobu_sourced=1 . /usr/bin/byobu-launch
-
 load_conf() {
   local conf
   for conf in "$1"/*.conf; do
@@ -53,3 +50,6 @@ if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then
 fi # added by Nix installer
 
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# Load byobu before all
+_byobu_sourced=1 . /usr/bin/byobu-launch 2>/dev/null || true
