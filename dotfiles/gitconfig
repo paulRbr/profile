@@ -69,12 +69,9 @@
 [forge]
         remote = upstream
 [github]
-        user = paulrbr-fl
+        user = paulrbr
+	oauth-token =
 [gitlab]
-	user = paulrbr-fl
+	user = paulrbr
 [gitlab "framagit.org/api/v4"]
-	user = paulrbr
-[gitlab "gitlab-perso.com/api/v4"]
-	user = paulrbr
-[github "api.github-perso.com"]
 	user = paulrbr
