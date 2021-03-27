@@ -43,13 +43,13 @@
 
 ;; Reply to mails with matching email address
 (setq gnus-posting-styles
-      '((".*" ; Matches all groups of messages
+      '(("home" ; Matches all groups of messages
          (address "Paul Bonaud <paul@bonaud.fr>"))
-        ("bump" ; Matches Gnus group called "bump"
-         (address "Paul Bonaud <paul@bump.sh>")
+        (".*" ; Matches Gnus group called "bump"
+         (address "Paul Bonaud <paulr@bump.sh>")
          (organization "Bump.sh")
          (signature-file "~/.signature-work")
-         ("X-Message-SMTP-Method" "smtp smtp.gmail.com 587 paul@bump.sh"))))
+         ("X-Message-SMTP-Method" "smtp smtp.gmail.com 587 paulr@bump.sh"))))
 
 
 (setq smtpmail-smtp-server "smtp.gmail.com"
