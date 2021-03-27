@@ -49,7 +49,6 @@ if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then
     . ${HOME}/.nix-profile/etc/profile.d/nix.sh
 fi # added by Nix installer
 
-export PATH="$HOME/.cargo/bin:$PATH"
-
 # Load byobu before all
 _byobu_sourced=1 . /usr/bin/byobu-launch 2>/dev/null || true
+[ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
