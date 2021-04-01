@@ -43,13 +43,18 @@
 
 ;; Reply to mails with matching email address
 (setq gnus-posting-styles
-      '(("home" ; Matches all groups of messages
-         (address "Paul Bonaud <paul@bonaud.fr>"))
-        (".*" ; Matches Gnus group called "bump"
+      '((".*" ; Matches all groups of messages
          (address "Paul Bonaud <paulr@bump.sh>")
          (organization "Bump.sh")
          (signature-file "~/.signature-work")
-         ("X-Message-SMTP-Method" "smtp smtp.gmail.com 587 paulr@bump.sh"))))
+         ("X-Message-SMTP-Method" "smtp smtp.gmail.com 587 paulr@bump.sh")
+         )
+        ("^nnimap\\+home:" ; Matches Gnus group called "home"
+         (address "Paul Bonaud <paul@bonaud.fr>")
+         (organization nil)
+         (signature-file nil)
+         ("X-Message-SMTP-Method" "smtp smtp.gmail.com 587 paul@bonaud.fr")
+         )))
 
 
 (setq smtpmail-smtp-server "smtp.gmail.com"
@@ -82,7 +87,9 @@
 (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
 
 ;; Gnus desktop notifications
-(setq gnus-notifications-minimum-level 10)
+;; groups level 6 are the “unsubscribed” groups (which we don't
+;; want notifications from)
+(setq gnus-notifications-minimum-level 5)
 (add-hook 'gnus-after-getting-new-news-hook 'gnus-notifications)
 
 ;; Fetch mail every X minutes when idle for Y minutes

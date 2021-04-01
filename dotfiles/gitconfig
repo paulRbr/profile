@@ -64,6 +64,8 @@
   path = ~/devel/ct/.gitconfig
 [includeIf "gitdir:~/devel/fretlink/"]
   path = ~/devel/fretlink/.gitconfig
+[includeIf "gitdir:~/devel/bump-sh/"]
+  path = ~/devel/bump-sh/.gitconfig
 [log]
 	showSignature = false
 [forge]
