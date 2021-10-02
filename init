@@ -50,5 +50,6 @@ if [ -e ${HOME}/.nix-profile/etc/profile.d/nix.sh ]; then
 fi # added by Nix installer
 
 # Load byobu before all
-_byobu_sourced=1 . /usr/bin/byobu-launch 2>/dev/null || true
 [ -f "$HOME/.cargo/env" ] && source "$HOME/.cargo/env"
+if [ -e /home/paul/.nix-profile/etc/profile.d/nix.sh ]; then . /home/paul/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+_byobu_sourced=1 . /usr/bin/byobu-launch 2>/dev/null || true
