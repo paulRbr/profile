@@ -9,12 +9,18 @@
 ;; update, catching up with a group, deleting expired articles, and replying by
 ;; mail to a news message...
 
+(setq gnus-asynchronous t)
 (setq gnus-expert-user t)
 (setq gnus-novice-user nil)
 
 ;; Remove nntp news from emacs
 (setq gnus-select-method '(nnnil nil))
 (setq gnus-nntp-server nil)
+
+;; Try to avoid duplicates in RSS feeds
+(setq nnrss-ignore-article-fields
+      '(comments description content:encoded slash:comments category))
+
 
 ;; Configure identity
 ;; (setq user-mail-address "paul@bonaud.fr"
@@ -101,6 +107,9 @@
 ;; Encrypt for myself
 (setq mml2015-encrypt-to-self t)
 
+;; Detect key from sender email
+(setq mml-secure-openpgp-sign-with-sender t)
+
 ;; Kill the mail buffer when sending a new message
 (setq message-kill-buffer-on-exit t)
 
@@ -123,6 +132,11 @@
       mm-sign-option nil ;; Auto select key for signing
       mm-encrypt-option nil
       gnus-article-emulate-mime t)
+
+;; Gmail labels
+;; https://www.gnu.org/software/emacs/manual/html_node/gnus/Support-for-IMAP-Extensions.html
+(setq gnus-extra-headers
+      '(To Newsgroups X-GM-LABELS))
 
 ;; Make gnus threading more stylish
 (defun gnus-user-format-function-@ (header)
